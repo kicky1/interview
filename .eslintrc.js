@@ -5,7 +5,7 @@ module.exports = {
     },
     "extends": [
         "standard-with-typescript",
-        "plugin:react/recommended"
+        'plugin:@next/next/recommended',
     ],
     "overrides": [
         {
@@ -28,6 +28,9 @@ module.exports = {
         "react"
     ],
     "rules": {
-
+        '@typescript-eslint/explicit-function-return-type': 'off',
+        '@typescript-eslint/strict-boolean-expressions': 'off',
+        '@typescript-eslint/consistent-type-definitions': 'off',
+        '@typescript-eslint/no-floating-promises': 'off',
     }
 }
