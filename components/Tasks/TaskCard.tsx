@@ -12,7 +12,7 @@ import { cn } from '@/lib/utils'
 
 type CardProps = React.ComponentProps<typeof Card>
 type Props = CardProps & {
-  cardId: number
+  id: number
   title: string
   description: string
   link: string
@@ -22,7 +22,7 @@ export default function TaskCard ({ title, description, id, link }: Props) {
   return (
     <>
       <Card>
-        <CardHeader className={cn('h-[320px]')}>
+        <CardHeader className={cn('h-[260px]')}>
           <CardTitle>{title}</CardTitle>
           <CardDescription className="pt-2">{description}</CardDescription>
         </CardHeader>
