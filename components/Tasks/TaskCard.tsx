@@ -9,19 +9,21 @@ import {
 } from "../ui/card";
 import Link from "next/link";
 import { Button } from "../ui/button";
+import { cn } from "@/lib/utils";
 
-interface Props {
+type CardProps = React.ComponentProps<typeof Card>;
+type Props = CardProps & {
   id: number;
   title: string;
   description: string;
   link: string;
-}
+};
 
 export default function TaskCard({ title, description, id, link }: Props) {
   return (
     <>
       <Card>
-        <CardHeader>
+        <CardHeader className={cn("h-[320px]")}>
           <CardTitle>{title}</CardTitle>
           <CardDescription className="pt-2">{description}</CardDescription>
         </CardHeader>
