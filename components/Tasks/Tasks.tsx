@@ -1,6 +1,5 @@
 import { tasksData } from "@/dataset/tasksData";
 import TaskCard from "./TaskCard";
-import QuestionCard from "./TaskCard";
 
 const { v4: uuidv4 } = require("uuid");
 
@@ -14,6 +13,7 @@ export default function Tasks() {
               id={item.id}
               title={item.title}
               description={item.description}
+              link={item.link}
             />
           </div>
         );

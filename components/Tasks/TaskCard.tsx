@@ -14,9 +14,10 @@ interface Props {
   id: number;
   title: string;
   description: string;
+  link: string;
 }
 
-export default function TaskCard({ title, description, id }: Props) {
+export default function TaskCard({ title, description, id, link }: Props) {
   return (
     <>
       <Card>
@@ -25,7 +26,7 @@ export default function TaskCard({ title, description, id }: Props) {
           <CardDescription className="pt-2">{description}</CardDescription>
         </CardHeader>
         <CardFooter className="justify-end">
-          <Link href={`/task/${id}`}>
+          <Link href={`/task/${link}`}>
             <Button variant={"outline"} className="border-2">
               Task {id}
             </Button>
