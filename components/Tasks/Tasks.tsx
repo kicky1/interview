@@ -10,7 +10,7 @@ export default function Tasks () {
         return (
           <div key={uuidv4()} className="h-auto">
             <TaskCard
-              id={item.id}
+              cardId={item.id}
               title={item.title}
               description={item.description}
               link={item.link}

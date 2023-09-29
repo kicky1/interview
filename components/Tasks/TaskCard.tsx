@@ -12,7 +12,7 @@ import { cn } from '@/lib/utils'
 
 type CardProps = React.ComponentProps<typeof Card>
 type Props = CardProps & {
-  id: number
+  cardId: number
   title: string
   description: string
   link: string
