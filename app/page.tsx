@@ -1,5 +1,4 @@
 import Tasks from "@/components/Tasks/Tasks";
-import Questions from "@/components/Tasks/Tasks";
 
 export default function Home() {
   return (
