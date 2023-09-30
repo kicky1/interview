@@ -1,6 +1,6 @@
-import Tasks from '@/components/Tasks/Tasks'
+import Tasks from '@/components/Tasks/Tasks';
 
-export default function Home () {
+export default function Home() {
   return (
     <div className="flex flex-col min-h-screen bg-gray-200 dark:bg-zinc-800/30">
       <div className="my-16 text-center">
@@ -12,5 +12,5 @@ export default function Home () {
         <Tasks />
       </div>
     </div>
-  )
+  );
 }
