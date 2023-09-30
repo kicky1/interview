@@ -1,9 +1,9 @@
-import { tasksData } from '@/dataset/tasksData';
-import TaskCard from './TaskCard';
+import { tasksData } from '@/dataset/tasksData'
+import TaskCard from './TaskCard'
 
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from 'uuid'
 
-export default function Tasks() {
+export default function Tasks () {
   return (
     <>
       {tasksData.map(item => {
@@ -16,8 +16,8 @@ export default function Tasks() {
               link={item.link}
             />
           </div>
-        );
+        )
       })}
     </>
-  );
+  )
 }
