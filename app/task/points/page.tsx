@@ -1,59 +1,59 @@
-'use client';
+'use client'
 
-import { Button } from '@/components/ui/button';
-import { useState } from 'react';
+import { Button } from '@/components/ui/button'
+import { useState } from 'react'
 
-export default function Page() {
+export default function Page () {
   const [points, setPoints] = useState<
-    Array<{ x: number; y: number; visible: boolean }>
-  >([]);
+  Array<{ x: number, y: number, visible: boolean }>
+  >([])
 
   const handleClick: React.MouseEventHandler<HTMLDivElement> = e => {
-    const container = e.currentTarget;
+    const container = e.currentTarget
     const x =
       ((e.clientX - container.getBoundingClientRect().left) /
         container.clientWidth) *
-      100;
+      100
     const y =
       ((e.clientY - container.getBoundingClientRect().top) /
         container.clientHeight) *
-      100;
-    setPoints([...points, { x, y, visible: true }]);
-  };
+      100
+    setPoints([...points, { x, y, visible: true }])
+  }
 
   const handleClearPoints = () => {
-    setPoints([]);
-  };
+    setPoints([])
+  }
 
   const handleUndo = () => {
-    const updatedPoints = [...points];
+    const updatedPoints = [...points]
     for (let i = updatedPoints.length - 1; i >= 0; i--) {
       if (updatedPoints[i].visible) {
-        updatedPoints[i].visible = false;
-        setPoints(updatedPoints);
-        break;
+        updatedPoints[i].visible = false
+        setPoints(updatedPoints)
+        break
       }
     }
-  };
+  }
 
   const handleRestore = () => {
-    const updatedPoints = [...points];
+    const updatedPoints = [...points]
     for (let i = updatedPoints.length - 1; i >= 0; i--) {
       if (!updatedPoints[i].visible) {
-        updatedPoints[i].visible = true;
-        setPoints(updatedPoints);
-        break;
+        updatedPoints[i].visible = true
+        setPoints(updatedPoints)
+        break
       }
     }
-  };
+  }
 
   const checkIfAllPointsAreVisible = () => {
-    return points.every(point => point.visible);
-  };
+    return points.every(point => point.visible)
+  }
 
   const checkIfAllPointsAreInvisible = () => {
-    return points.every(point => !point.visible);
-  };
+    return points.every(point => !point.visible)
+  }
 
   return (
     <>
@@ -73,7 +73,7 @@ export default function Page() {
                   className="absolute w-4 h-4 bg-teal-600 rounded-full"
                   style={{ top: `${point.y - 2}%`, left: `${point.x - 2}%` }}
                 />
-              ),
+              )
           )}
         </div>
         <Button
@@ -99,5 +99,5 @@ export default function Page() {
         </Button>
       </div>
     </>
-  );
+  )
 }
