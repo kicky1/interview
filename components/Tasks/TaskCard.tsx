@@ -1,24 +1,24 @@
-import React from 'react'
+import React from 'react';
 import {
   Card,
   CardDescription,
   CardFooter,
   CardHeader,
-  CardTitle
-} from '../ui/card'
-import Link from 'next/link'
-import { Button } from '../ui/button'
-import { cn } from '@/lib/utils'
+  CardTitle,
+} from '../ui/card';
+import Link from 'next/link';
+import { Button } from '../ui/button';
+import { cn } from '@/lib/utils';
 
-type CardProps = React.ComponentProps<typeof Card>
+type CardProps = React.ComponentProps<typeof Card>;
 type Props = CardProps & {
-  cardId: number
-  title: string
-  description: string
-  link: string
-}
+  cardId: number;
+  title: string;
+  description: string;
+  link: string;
+};
 
-export default function TaskCard ({ title, description, cardId, link }: Props) {
+export default function TaskCard({ title, description, cardId, link }: Props) {
   return (
     <>
       <Card>
@@ -35,5 +35,5 @@ export default function TaskCard ({ title, description, cardId, link }: Props) {
         </CardFooter>
       </Card>
     </>
-  )
+  );
 }
