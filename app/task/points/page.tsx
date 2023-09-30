@@ -8,7 +8,7 @@ export default function Page () {
   Array<{ x: number, y: number, visible: boolean }>
   >([])
 
-  const handleClick: React.MouseEventHandler<HTMLDivElement> = (e) => {
+  const handleClick: React.MouseEventHandler<HTMLDivElement> = e => {
     const container = e.currentTarget
     const x =
       ((e.clientX - container.getBoundingClientRect().left) /
@@ -48,11 +48,11 @@ export default function Page () {
   }
 
   const checkIfAllPointsAreVisible = () => {
-    return points.every((point) => point.visible)
+    return points.every(point => point.visible)
   }
 
   const checkIfAllPointsAreInvisible = () => {
-    return points.every((point) => !point.visible)
+    return points.every(point => !point.visible)
   }
 
   return (
