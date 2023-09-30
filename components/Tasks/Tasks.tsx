@@ -6,7 +6,7 @@ import { v4 as uuidv4 } from 'uuid'
 export default function Tasks () {
   return (
     <>
-      {tasksData.map((item) => {
+      {tasksData.map(item => {
         return (
           <div key={uuidv4()} className="h-auto">
             <TaskCard
