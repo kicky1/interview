@@ -97,14 +97,14 @@ export default function Page() {
 
   useEffect(() => {
     const startIdx = (page - 1) * parseInt(perPage);
-    const endIdx = startIdx + perPage;
+    const endIdx = startIdx + parseInt(perPage);
     setVisibleData(filteredData.slice(startIdx, endIdx));
-  }, [page, perPage, filteredData]);
+  }, [page, parseInt(perPage), filteredData]);
 
   useEffect(() => {
     const totalPages = Math.ceil(filteredData.length / parseInt(perPage));
     setTotalPages(totalPages);
-  }, [filteredData, perPage]);
+  }, [filteredData, parseInt(perPage)]);
 
   const sortBy = (value: string) => {
     const sortedData = [...tableData];
