@@ -13,4 +13,11 @@ export const tasksData = [
     description:
       'Create an application where the user can log in using a form. The login button must be disabled if the username is empty and the password has less than six letters. Also, the button must be disabled in case of a login action. An error message must be displayed in case of invalid login.',
   },
+  {
+    id: 3,
+    title: 'T.3',
+    link: 'sortingtable',
+    description:
+      'Create an application that allows you to retrieve data from the api and then display it in a table. The table should allow you to sort and filter the data. Also add pagination.',
+  },
 ];
