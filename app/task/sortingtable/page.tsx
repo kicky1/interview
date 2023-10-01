@@ -55,7 +55,7 @@ export default function Page() {
   const [loading, setLoading] = useState<boolean>(true);
   const [page, setPage] = useState<number>(1);
   const [totalPages, setTotalPages] = useState<number>(1);
-  const [perPage, setPerPage] = useState<number>(10);
+  const [perPage, setPerPage] = useState<string>('10');
   const [visibleData, setVisibleData] = useState<any[]>([]);
 
   useEffect(() => {
@@ -90,19 +90,19 @@ export default function Page() {
       setTableHeaders(header);
       setFilteredData(tableData);
 
-      const totalPages = Math.ceil(tableData.length / perPage);
+      const totalPages = Math.ceil(tableData.length / parseInt(perPage));
       setTotalPages(totalPages);
     }
   }, [tableData]);
 
   useEffect(() => {
-    const startIdx = (page - 1) * perPage;
+    const startIdx = (page - 1) * parseInt(perPage);
     const endIdx = startIdx + perPage;
     setVisibleData(filteredData.slice(startIdx, endIdx));
   }, [page, perPage, filteredData]);
 
   useEffect(() => {
-    const totalPages = Math.ceil(filteredData.length / perPage);
+    const totalPages = Math.ceil(filteredData.length / parseInt(perPage));
     setTotalPages(totalPages);
   }, [filteredData, perPage]);
 
@@ -209,7 +209,7 @@ export default function Page() {
               </div>
               <div className="flex items-center justify-end space-x-2 py-4">
                 <Select
-                  onValueChange={(value: number) => {
+                  onValueChange={(value: string) => {
                     setPerPage(value);
                     setPage(1);
                   }}
@@ -219,10 +219,10 @@ export default function Page() {
                     <SelectValue placeholder="10" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value={10}>10</SelectItem>
-                    <SelectItem value={20}>20</SelectItem>
-                    <SelectItem value={50}>50</SelectItem>
-                    <SelectItem value={100}>100</SelectItem>
+                    <SelectItem value={'10'}>10</SelectItem>
+                    <SelectItem value={'20'}>20</SelectItem>
+                    <SelectItem value={'50'}>50</SelectItem>
+                    <SelectItem value={'100'}>100</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
