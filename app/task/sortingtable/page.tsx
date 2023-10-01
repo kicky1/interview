@@ -10,7 +10,7 @@ import {
   TableHeader,
   TableRow
 } from '@/components/ui/table';
-import { SetStateAction, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { ArrowUpDown } from 'lucide-react';
 import {
@@ -209,7 +209,7 @@ export default function Page() {
               </div>
               <div className="flex items-center justify-end space-x-2 py-4">
                 <Select
-                  onValueChange={(value: SetStateAction<number>) => {
+                  onValueChange={(value: number) => {
                     setPerPage(value);
                     setPage(1);
                   }}
