@@ -158,7 +158,7 @@ export default function Page() {
                           <TableHead key={header.name}>
                             <Button
                               variant={'ghost'}
-                              size="xs"
+                              size="sm"
                               className={`text-left bg-gray-900 hover:bg-gray-800 hover:text-gray-300 ${
                                 currentlySortedBy === header.name &&
                                 'text-gray-300'
