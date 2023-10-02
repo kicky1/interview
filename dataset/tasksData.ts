@@ -20,4 +20,11 @@ export const tasksData = [
     description:
       'Create an application that allows you to retrieve data from the api and then display it in a table. The table should allow you to sort and filter the data. Also add pagination.',
   },
+  {
+    id: 4,
+    title: 'T.4',
+    link: 'tree',
+    description:
+      'Create an application that allows you to display a tree structure with nested elements.',
+  },
 ];
