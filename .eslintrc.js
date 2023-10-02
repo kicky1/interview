@@ -35,5 +35,6 @@ module.exports = {
     '@typescript-eslint/comma-dangle': 'off',
     '@typescript-eslint/quotes': 'off',
     'multiline-ternary': 'off',
+    '@typescript-eslint/indent': 'off',
   },
 };

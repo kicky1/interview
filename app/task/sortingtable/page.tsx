@@ -8,7 +8,7 @@ import {
   TableCell,
   TableHead,
   TableHeader,
-  TableRow
+  TableRow,
 } from '@/components/ui/table';
 import { useEffect, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
@@ -18,7 +18,7 @@ import {
   SelectTrigger,
   SelectValue,
   SelectContent,
-  SelectItem
+  SelectItem,
 } from '@/components/ui/select';
 
 type Location = {
@@ -42,7 +42,7 @@ const fetchData = async () => {
     .then(res => res.json())
     .catch(err => console.log(err));
 
-  return res
+  return res;
 };
 
 export default function Page() {
@@ -69,9 +69,9 @@ export default function Page() {
             country: item.location.country,
             street:
               item.location.street.name + ' ' + item.location.street.number,
-            postcode: item.location.postcode
+            postcode: item.location.postcode,
           };
-        })
+        }),
       );
       setLoading(false);
     });
