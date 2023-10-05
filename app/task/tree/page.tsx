@@ -140,8 +140,8 @@ function TreeStructure({ treeObject }: TreeStructureProps) {
     <>
       {tree.map((node: TTree) => (
         <>
-          <Card>
-            <CardHeader>
+          <Card className='max-w-xs sm:max-w-4xl'>
+            <div className='p-1 sm:p-4'>
               <CardDescription>
                 <div className="flex items-center">
                   {node.children.length > 0 &&
@@ -169,7 +169,7 @@ function TreeStructure({ treeObject }: TreeStructureProps) {
                         }}
                       />
                     : 
-                      <span className='ml-4'>{node.name}</span>
+                      <span className='ml-4 truncate '>{node.name}</span>
                     }
                     <div className='flex grow'></div>
                     {isEditing ? 
@@ -195,7 +195,7 @@ function TreeStructure({ treeObject }: TreeStructureProps) {
                       {
                         node.depth > 0 &&
                         <>
-                          <Button variant="ghost" onClick={() => handleDeleteNode(node)}>
+                          <Button className='pl-1' variant="ghost" onClick={() => handleDeleteNode(node)}>
                             <Trash className="w-4 h-4" />
                           </Button>
                         </>
@@ -205,12 +205,12 @@ function TreeStructure({ treeObject }: TreeStructureProps) {
                   }
                 </div>
               </CardDescription>
-            </CardHeader>
+                  </div>
           </Card>
           {visibleNodes.includes(node.id) && node.children.length > 0 && (
-            <div className="pl-5">
+            <div className="pl-2 sm:pl-5">
               {node.children.map((childNode) => (
-                <TreeStructure key={node.id} treeObject={[childNode]} />
+                <TreeStructure key={childNode.id} treeObject={[childNode]} />
               ))}
             </div>
           )}
@@ -232,9 +232,7 @@ export default function Page() {
         </p>
         <div className="flex flex-col items-center justify-start mt-16">
           <div className="w-full">
-            <div className="container text-start px-4 sm:px-8">
-              <TreeStructure key={treeObject.id} treeObject={[treeObject]} />
-            </div>
+            <TreeStructure key={treeObject.id} treeObject={[treeObject]} />
           </div>
         </div>
       </div>
