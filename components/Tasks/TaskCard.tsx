@@ -16,7 +16,7 @@ type Props = CardProps & {
   cardId: number;
   title: string;
   description: string;
-  badge: string;
+  badge: 'default' | 'secondary' | 'easy' | 'medium' | 'hard' | 'destructive' | 'outline' | null | undefined;
   link: string;
 };
 
@@ -29,7 +29,7 @@ export default function TaskCard({ title, description, cardId, badge, link }: Pr
           <CardDescription className="pt-2">{description}</CardDescription>
         </CardHeader>
         <CardFooter className="justify-between">
-          <Badge variant={badge.toLowerCase()}>{badge}</Badge>
+          <Badge variant={badge}>{badge}</Badge>
           <Link href={`/task/${link}`}>
             <Button variant={'outline'} className="border-2">
               Task {cardId}

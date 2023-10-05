@@ -32,6 +32,8 @@ type Location = {
   postcode: string;
 };
 
+type LocationFlat = Omit<Location, 'street'> & { street: string };
+
 type Header = {
   id: string;
   name: string;
@@ -46,8 +48,8 @@ const fetchData = async () => {
 };
 
 export default function Page() {
-  const [tableHeaders, setTableHeaders] = useState<any>([]);
-  const [tableData, setTableData] = useState<any>([]);
+  const [tableHeaders, setTableHeaders] = useState<Header[]>([]);
+  const [tableData, setTableData] = useState<LocationFlat[]>([]);
   const [filteredData, setFilteredData] = useState<any>([]);
   const [currentlySortedBy, setCurrentlySortedBy] = useState<string>('');
   const [sortOrder, setSortOrder] = useState('asc');
@@ -56,7 +58,7 @@ export default function Page() {
   const [page, setPage] = useState<number>(1);
   const [totalPages, setTotalPages] = useState<number>(1);
   const [perPage, setPerPage] = useState<string>('10');
-  const [visibleData, setVisibleData] = useState<any[]>([]);
+  const [visibleData, setVisibleData] = useState<Location[]>([]);
 
   useEffect(() => {
     setLoading(true);
