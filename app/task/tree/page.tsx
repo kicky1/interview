@@ -192,9 +192,15 @@ function TreeStructure({ treeObject }: TreeStructureProps) {
                       <Button variant="ghost" onClick={() => handleAddNode(node)}>
                         <Plus className="w-4 h-4" />
                       </Button>
-                      <Button variant="ghost" onClick={() => handleDeleteNode(node)}>
-                        <Trash className="w-4 h-4" />
-                      </Button>
+                      {
+                        node.depth > 0 &&
+                        <>
+                          <Button variant="ghost" onClick={() => handleDeleteNode(node)}>
+                            <Trash className="w-4 h-4" />
+                          </Button>
+                        </>
+                      }
+                      
                     </>
                   }
                 </div>
