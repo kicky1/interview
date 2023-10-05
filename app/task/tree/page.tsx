@@ -8,7 +8,6 @@ import {
 } from '@/components/ui/card';
 import { ChevronDown, ChevronUp, Plus, Pencil, X, Check, Trash } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { v4 as uuidv4 } from 'uuid';
 import { Input } from '@/components/ui/input';
 
 type TTree = {

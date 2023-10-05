@@ -14,6 +14,7 @@ module.exports = {
         "no-useless-escape": "off",
         "react/no-unescaped-entities": "off",
         "@next/next/no-page-custom-font": "off",
-        "@next/next/no-html-link-for-pages": "off"
+        "@next/next/no-html-link-for-pages": "off",
+        "@typescript-eslint/no-explicit-any": "off",
     }
 }
