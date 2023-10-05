@@ -3,7 +3,6 @@
 import { useState } from 'react';
 import {
   Card,
-  CardHeader,
   CardDescription,
 } from '@/components/ui/card';
 import { ChevronDown, ChevronUp, Plus, Pencil, X, Check, Trash } from 'lucide-react';
