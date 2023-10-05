@@ -8,38 +8,39 @@ import {
 } from '@/components/ui/card';
 import { ChevronDown, ChevronUp, Plus, Pencil, X, Check, Trash } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { v4 as uuidv4 } from 'uuid';
 import { Input } from '@/components/ui/input';
 
 type TTree = {
-  id: number;
+  id: string;
   name: string;
   depth: number;
   children: TTree[];
 };
 
 const treeObject: TTree = {
-  id: 1,
+  id: uuidv4(),
   name: 'root',
   depth: 0,
   children: [
     {
-      id: 2,
+      id: uuidv4(),
       name: 'child1',
       depth: 1,
       children: [
         {
-          id: 4,
+          id: uuidv4(),
           name: 'grandchild1',
           depth: 2,
           children: [
             {
-              id: 6,
+              id: uuidv4(),
               name: 'grandgrandchild1',
               depth: 3,
               children: [],
             },
             {
-              id: 7,
+              id: uuidv4(),
               name: 'grandgrandchild2',
               depth: 3,
               children: [],
@@ -47,7 +48,7 @@ const treeObject: TTree = {
           ],
         },
         {
-          id: 5,
+          id: uuidv4(),
           name: 'grandchild2',
           depth: 2,
           children: [],
@@ -55,18 +56,18 @@ const treeObject: TTree = {
       ],
     },
     {
-      id: 3,
+      id: uuidv4(),
       name: 'child2',
       depth: 1,
       children: [
         {
-          id: 8,
+          id: uuidv4(),
           name: 'grandchild3',
           depth: 2,
           children: [],
         },
         {
-          id: 9,
+          id: uuidv4(),
           name: 'grandchild4',
           depth: 2,
           children: [],
@@ -81,13 +82,13 @@ type TreeStructureProps = {
 };
 
 function TreeStructure({ treeObject }: TreeStructureProps) {
-  const [visibleNodes, setVisibleNodes] = useState<number[]>([]);
+  const [visibleNodes, setVisibleNodes] = useState<string[]>([]);
   const [tree, setTree] = useState<TTree[]>(treeObject);
   const [editName, setEditName] = useState<string>('');
   const [isEditing, setIsEditing] = useState<boolean>(false);
 
 
-  const toggleVisibility = (nodeId: number) => {
+  const toggleVisibility = (nodeId: string) => {
     if (visibleNodes.includes(nodeId)) {
       setVisibleNodes(visibleNodes.filter(id => id !== nodeId));
     } else {
@@ -95,7 +96,7 @@ function TreeStructure({ treeObject }: TreeStructureProps) {
     }
   };
 
-  const handleAcceptChange = (nodeId: number) => {
+  const handleAcceptChange = (nodeId: string) => {
     const newTree = tree.map((node: TTree) => {
       if (node.id === nodeId) {
         return {
@@ -112,7 +113,7 @@ function TreeStructure({ treeObject }: TreeStructureProps) {
 
   const handleAddNode = (newNode: TTree) => {
     const childNode = {
-      id: Math.floor(Math.random() * 1000),
+      id: uuidv4(),
       name: 'new node',
       depth: newNode.depth + 1,
       children: [],
@@ -203,7 +204,7 @@ function TreeStructure({ treeObject }: TreeStructureProps) {
           {visibleNodes.includes(node.id) && node.children.length > 0 && (
             <div className="pl-5">
               {node.children.map((childNode) => (
-                <TreeStructure key={childNode.id} treeObject={[childNode]} />
+                <TreeStructure key={node.id} treeObject={[childNode]} />
               ))}
             </div>
           )}
