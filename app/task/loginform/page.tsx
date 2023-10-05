@@ -100,11 +100,16 @@ export default function Page() {
   const [variant, setVariant] = useState<Variant>('default');
   const [title, setTitle] = useState('');
   const [message, setMessage] = useState('');
+  const [showErrorMessage, setShowErrorMessage] = useState(false);
 
-  const disabledButton = username === '' || password.length < 6 || loading;
+  const validate = username === '' || password.length < 6;
 
   const handleLogin: MouseEventHandler<HTMLButtonElement> = async event => {
     event.preventDefault();
+    if(validate){
+      setShowErrorMessage(true)
+      return;
+    };
     setLoading(true);
     await login({ username, password })
       .then(() => {
@@ -154,6 +159,7 @@ export default function Page() {
                   value={username}
                   onChange={e => {
                     setUsername(e.target.value);
+                    setShowErrorMessage(false);
                   }}
                 />
               </div>
@@ -165,14 +171,22 @@ export default function Page() {
                   value={password}
                   onChange={e => {
                     setPassword(e.target.value);
+                    setShowErrorMessage(false);
                   }}
                 />
               </div>
+              
+                {showErrorMessage && (
+                <p className="text-sm text-start text-red-500">
+                  Please fill in the fields correctly
+                </p>
+              )}
+              
             </CardContent>
             <CardFooter>
               <Button
                 className="w-full"
-                disabled={disabledButton}
+                disabled={loading}
                 onClick={handleLogin}
               >
                 {loading ? (
