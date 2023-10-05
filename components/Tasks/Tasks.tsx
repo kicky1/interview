@@ -13,6 +13,7 @@ export default function Tasks() {
               cardId={item.id}
               title={item.title}
               description={item.description}
+              badge={item.badge}
               link={item.link}
             />
           </div>
