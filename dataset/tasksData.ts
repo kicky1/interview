@@ -31,4 +31,11 @@ export const tasksData = [
     description:
       'Create an application that allows you to display a tree structure with nested elements. Additionally, add the ability to add, edit and remove elements from the tree.',
   },
+  {
+    id: 5,
+    title: 'T.5',
+    link: 'stringchecking',
+    badge: 'easy',
+    description: ''
+  }
 ];
