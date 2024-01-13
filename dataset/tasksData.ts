@@ -34,8 +34,8 @@ export const tasksData = [
   {
     id: 5,
     title: 'T.5',
-    link: 'stringchecking',
-    badge: 'easy',
-    description: ''
+    link: 'memo',
+    badge: 'medium',
+    description: 'Create an application that allows play memo.'
   }
 ];
