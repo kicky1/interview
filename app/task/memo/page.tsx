@@ -2,6 +2,7 @@
 
 import { Button } from '@/components/ui/button';
 import { toast } from '@/components/ui/use-toast';
+import { SpadeIcon } from 'lucide-react';
 import { useState, useEffect, useRef } from 'react';
 
 type Card = {
@@ -14,7 +15,9 @@ type Cards = Card[][];
 const createFreshCards = (): Cards => [
   [{ value: 1, visible: false }, { value: 1, visible: false }],
   [{ value: 2, visible: false }, { value: 2, visible: false }],
-  [{ value: 3, visible: false }, { value: 3, visible: false }]
+  [{ value: 3, visible: false }, { value: 3, visible: false }],
+  [{ value: 4, visible: false }, { value: 4, visible: false }],
+  [{ value: 5, visible: false }, { value: 5, visible: false }],
 ];
 
 export default function Page() {
@@ -103,19 +106,20 @@ export default function Page() {
         <p className="text-2xl">
           Task 5: <code className="font-mono font-bold">"Memo"</code>
         </p>
-        <div className="flex flex-wrap justify-center items-center box-content  h-96 w-96 p-4 my-16 border-2 border-slate-200 bg-slate-50 rounded">
+        <div className="flex justify-center items-center box-content  h-96 w-min p-4 my-16 border-2 border-slate-200 bg-slate-50 rounded">
           {cards.map((cardX, indexX) => (
             <div key={indexX}>
               {cardX.map((cardY, indexY) => (
-                <span key={indexY}>
+                
                   <Button
+                    key={indexY}
                     disabled={cardY.visible || !started}
                     className={"w-24 h-24 m-2"}
                     onClick={() => handleCardClick(indexX, indexY)}
                   >
-                    {cardY.visible ? cardY.value : '-'}
+                    {cardY.visible ? <span className={'text-lg'}>{cardY.value} </span>: <SpadeIcon/>}
                   </Button>
-                </span>
+               
               ))}
             </div>
           ))}
