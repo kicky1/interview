@@ -225,7 +225,7 @@ function TreeStructure({ treeObject }: TreeStructureProps) {
 export default function Page() {
   return (
     <>
-      <div className="my-16 text-center">
+      <div className="my-8 text-center">
         <p className="text-2xl">
           Task 4: <code className="font-mono font-bold">"Tree"</code>
         </p>
