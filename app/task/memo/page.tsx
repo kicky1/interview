@@ -55,8 +55,8 @@ export default function Page() {
   };
 
   const handleStart = () => {
-    setStarted(true),
-    shuffleCards(createFreshCards());
+    setCards(shuffleCards(createFreshCards()))
+    setStarted(true)
   }
 
   useEffect(() => {
