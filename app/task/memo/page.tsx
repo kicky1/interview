@@ -2,8 +2,6 @@
 
 import { Button } from '@/components/ui/button';
 import { toast } from '@/components/ui/use-toast';
-import { cn } from '@/lib/utils';
-import { cva } from 'class-variance-authority';
 import { useState, useEffect, useRef } from 'react';
 
 type Card = {
@@ -19,13 +17,11 @@ const createFreshCards = (): Cards => [
   [{ value: 3, visible: false }, { value: 3, visible: false }]
 ];
 
-
 export default function Page() {
   const [cards, setCards] = useState<Cards>(createFreshCards);
   const [started, setStarted] = useState(false)
   const [pickedFirstCard, setPickedFirstCard] = useState<Card | undefined>(undefined);
   const [pickedSecondCard, setPickedSecondCard] = useState<Card | undefined>(undefined);
-
 
   const convertTo2DArray = (card: Card[]) => {
     let result = [];
@@ -90,7 +86,6 @@ export default function Page() {
       setPickedSecondCard(undefined);
     }
   }, [cards, pickedFirstCard, pickedSecondCard]);
-
 
   useEffect(() => { 
     if (cards.every(row => row.every(card => card.visible))) {
