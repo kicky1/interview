@@ -32,7 +32,7 @@ export default function TaskCard({ title, description, cardId, badge, link }: Pr
           <Badge variant={badge}>{badge}</Badge>
           <Link href={`/task/${link}`}>
             <Button variant={'outline'} className="border-2">
-              Task {cardId}
+              Go to task
             </Button>
           </Link>
         </CardFooter>
