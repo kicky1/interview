@@ -57,12 +57,12 @@ export default function Page() {
 
   return (
     <>
-      <div className="my-16 text-center">
+      <div className="my-8 text-center">
         <p className="text-2xl">
           Task 1: <code className="font-mono font-bold">"Map of points"</code>
         </p>
         <div
-          className="box-content relative h-96 w-96 p-4 my-16 border-2 border-teal-600 rounded"
+          className="box-content relative h-96 w-96 p-4 my-8 border-2 border-teal-600 rounded"
           onClick={handleClick}
         >
           {points.map(

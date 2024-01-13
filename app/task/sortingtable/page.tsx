@@ -136,7 +136,7 @@ export default function Page() {
 
   return (
     <>
-      <div className="my-16 text-center">
+      <div className="my-8 text-center">
         <p className="text-2xl">
           Task 3: <code className="font-mono font-bold">"Table"</code>
         </p>

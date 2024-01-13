@@ -36,6 +36,6 @@ export const tasksData = [
     title: 'T.5',
     link: 'memo',
     badge: 'medium',
-    description: 'Create an application that allows play memo.'
+    description: 'Create an application that  enables users to play a memory game. The game should involve a set of cards arranged in a grid, face down, and the objective is to match pairs of cards by flipping them over two at a time. The game should continue until all pairs have been successfully matched.'
   }
 ];
