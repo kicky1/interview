@@ -16,10 +16,7 @@ type Props = CardProps & {
   cardId: number;
   title: string;
   description: string;
-  badge:
-    | 'easy'
-    | 'medium'
-    | 'hard'
+  badge: 'easy' | 'medium' | 'hard';
   link: string;
 };
 
