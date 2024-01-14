@@ -75,13 +75,12 @@
   }
 }
 
-
 @layer components {
   .flip-card {
     perspective: 1000px;
     transition: transform 0.5s;
   }
-  
+
   .flip-card.flipped {
     transform: rotateY(180deg);
   }

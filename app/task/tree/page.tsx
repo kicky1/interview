@@ -1,11 +1,16 @@
 'use client';
 
 import { useState } from 'react';
+import { Card, CardDescription } from '@/components/ui/card';
 import {
-  Card,
-  CardDescription,
-} from '@/components/ui/card';
-import { ChevronDown, ChevronUp, Plus, Pencil, X, Check, Trash } from 'lucide-react';
+  ChevronDown,
+  ChevronUp,
+  Plus,
+  Pencil,
+  X,
+  Check,
+  Trash,
+} from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { v4 as uuidv4 } from 'uuid';
 import { Input } from '@/components/ui/input';
@@ -86,7 +91,6 @@ function TreeStructure({ treeObject }: TreeStructureProps) {
   const [editName, setEditName] = useState<string>('');
   const [isEditing, setIsEditing] = useState<boolean>(false);
 
-
   const toggleVisibility = (nodeId: string) => {
     if (visibleNodes.includes(nodeId)) {
       setVisibleNodes(visibleNodes.filter(id => id !== nodeId));
@@ -105,10 +109,9 @@ function TreeStructure({ treeObject }: TreeStructureProps) {
       }
       return node;
     });
-    setTree(newTree)
+    setTree(newTree);
     setIsEditing(false);
-  }
-
+  };
 
   const handleAddNode = (newNode: TTree) => {
     const childNode = {
@@ -117,7 +120,7 @@ function TreeStructure({ treeObject }: TreeStructureProps) {
       depth: newNode.depth + 1,
       children: [],
     };
-    
+
     const newTree = tree.map((node: TTree) => {
       if (node.id === newNode.id) {
         return {
@@ -128,7 +131,7 @@ function TreeStructure({ treeObject }: TreeStructureProps) {
       return node;
     });
     setTree([...newTree]);
-  }
+  };
 
   const handleDeleteNode = (nodeToDelete: TTree) => {
     const newTree = tree.filter((node: TTree) => node.id !== nodeToDelete.id);
@@ -139,76 +142,100 @@ function TreeStructure({ treeObject }: TreeStructureProps) {
     <>
       {tree.map((node: TTree) => (
         <>
-          <Card className='max-w-xs sm:max-w-4xl'>
-            <div className='p-1 sm:p-4'>
+          <Card className="max-w-xs sm:max-w-4xl">
+            <div className="p-1 sm:p-4">
               <CardDescription>
                 <div className="flex items-center">
                   {node.children.length > 0 &&
                     (visibleNodes.includes(node.id) ? (
-                      <Button className='mr-2' variant="ghost" onClick={() => toggleVisibility(node.id)}>
+                      <Button
+                        className="mr-2"
+                        variant="ghost"
+                        onClick={() => toggleVisibility(node.id)}
+                      >
                         <ChevronUp className="w-4 h-4" />
                       </Button>
                     ) : (
-                      <Button className='mr-2' variant="ghost" onClick={() => toggleVisibility(node.id)}>
+                      <Button
+                        className="mr-2"
+                        variant="ghost"
+                        onClick={() => toggleVisibility(node.id)}
+                      >
                         <ChevronDown className="w-4 h-4" />
                       </Button>
                     ))}
-                    {isEditing ?
-                      <Input
-                        type="text"
-                        value={editName}
-                        className="w-1/2"
-                        onChange={(e) => setEditName(e.target.value)}
-                        onKeyDown={(e) => {
-                          if (e.key === 'Enter') {
-                            handleAcceptChange(node.id);
-                          } else if (e.key === 'Escape') {
-                            setIsEditing(false);
-                          }
-                        }}
-                      />
-                    : 
-                      <span className='ml-4 truncate '>{node.name}</span>
-                    }
-                    <div className='flex grow'></div>
-                    {isEditing ? 
+                  {isEditing ? (
+                    <Input
+                      type="text"
+                      value={editName}
+                      className="w-1/2"
+                      onChange={e => setEditName(e.target.value)}
+                      onKeyDown={e => {
+                        if (e.key === 'Enter') {
+                          handleAcceptChange(node.id);
+                        } else if (e.key === 'Escape') {
+                          setIsEditing(false);
+                        }
+                      }}
+                    />
+                  ) : (
+                    <span className="ml-4 truncate ">{node.name}</span>
+                  )}
+                  <div className="flex grow"></div>
+                  {isEditing ? (
                     <>
-                      <Button className='ml-8' variant="ghost" onClick={() => handleAcceptChange(node.id)}>
+                      <Button
+                        className="ml-8"
+                        variant="ghost"
+                        onClick={() => handleAcceptChange(node.id)}
+                      >
                         <Check className="w-4 h-4" />
                       </Button>
-                        <Button variant="ghost" onClick={() => setIsEditing(false)}>
+                      <Button
+                        variant="ghost"
+                        onClick={() => setIsEditing(false)}
+                      >
                         <X className="w-4 h-4" />
-                      </Button>                   
+                      </Button>
                     </>
-                    :
+                  ) : (
                     <>
-                      <Button className='ml-8' variant="ghost" onClick={() => {
-                        setEditName(node.name)
-                        setIsEditing(true)}
-                        }>
+                      <Button
+                        className="ml-8"
+                        variant="ghost"
+                        onClick={() => {
+                          setEditName(node.name);
+                          setIsEditing(true);
+                        }}
+                      >
                         <Pencil className="w-4 h-4" />
                       </Button>
-                      <Button variant="ghost" onClick={() => handleAddNode(node)}>
+                      <Button
+                        variant="ghost"
+                        onClick={() => handleAddNode(node)}
+                      >
                         <Plus className="w-4 h-4" />
                       </Button>
-                      {
-                        node.depth > 0 &&
+                      {node.depth > 0 && (
                         <>
-                          <Button className='pl-1' variant="ghost" onClick={() => handleDeleteNode(node)}>
+                          <Button
+                            className="pl-1"
+                            variant="ghost"
+                            onClick={() => handleDeleteNode(node)}
+                          >
                             <Trash className="w-4 h-4" />
                           </Button>
                         </>
-                      }
-                      
+                      )}
                     </>
-                  }
+                  )}
                 </div>
               </CardDescription>
-                  </div>
+            </div>
           </Card>
           {visibleNodes.includes(node.id) && node.children.length > 0 && (
             <div className="pl-2 sm:pl-5">
-              {node.children.map((childNode) => (
+              {node.children.map(childNode => (
                 <TreeStructure key={childNode.id} treeObject={[childNode]} />
               ))}
             </div>
@@ -218,9 +245,6 @@ function TreeStructure({ treeObject }: TreeStructureProps) {
     </>
   );
 }
-
-
-
 
 export default function Page() {
   return (

@@ -16,11 +16,14 @@ type Props = CardProps & {
   cardId: number;
   title: string;
   description: string;
-  badge: 'default' | 'secondary' | 'easy' | 'medium' | 'hard' | 'destructive' | 'outline' | null | undefined;
+  badge:
+    | 'easy'
+    | 'medium'
+    | 'hard'
   link: string;
 };
 
-export default function TaskCard({ title, description, cardId, badge, link }: Props) {
+export default function TaskCard({ title, description, badge, link }: Props) {
   return (
     <>
       <Card>
