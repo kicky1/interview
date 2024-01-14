@@ -108,12 +108,12 @@ export default function Page() {
 
   return (
     <>
-      <div className="my-16 text-center">
+      <div className="my-8 text-center">
         <p className="text-2xl">
           Task 5: <code className="font-mono font-bold">"Memo"</code>
         </p>
         <div className="h-fit w-fit p-4 mt-8 border-2 border-slate-200 bg-slate-50 rounded">
-          <div className="grid grid-cols-4 gap-4">
+          <div className="grid grid-cols-3 gap-4 sm:grid-cols-4">
             {cards.map((card, index) => (
               <div
                 key={index}
@@ -121,7 +121,7 @@ export default function Page() {
               >
                 <Button
                   key={index}
-                  className={`w-24 h-24 m-2`}
+                  className={`w-24 h-24`}
                   onClick={() => handleCardClick(index)}
                   disabled={card.visible || !started}
                 >
