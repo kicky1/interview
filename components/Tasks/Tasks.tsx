@@ -3,7 +3,7 @@ import TaskCard from './TaskCard';
 
 import { v4 as uuidv4 } from 'uuid';
 
-type Badge = 'easy' | 'medium' | 'hard' 
+type Badge = 'easy' | 'medium' | 'hard';
 
 const customSort = (a: Task, b: Task) => {
   const difficultyOrder = { easy: 1, medium: 2, hard: 3 };

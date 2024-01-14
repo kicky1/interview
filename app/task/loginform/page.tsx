@@ -106,10 +106,10 @@ export default function Page() {
 
   const handleLogin: MouseEventHandler<HTMLButtonElement> = async event => {
     event.preventDefault();
-    if(validate){
-      setShowErrorMessage(true)
+    if (validate) {
+      setShowErrorMessage(true);
       return;
-    };
+    }
     setLoading(true);
     await login({ username, password })
       .then(() => {
@@ -175,13 +175,12 @@ export default function Page() {
                   }}
                 />
               </div>
-              
-                {showErrorMessage && (
+
+              {showErrorMessage && (
                 <p className="text-sm text-start text-red-500">
                   Please fill in the fields correctly
                 </p>
               )}
-              
             </CardContent>
             <CardFooter>
               <Button
