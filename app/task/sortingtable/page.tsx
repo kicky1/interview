@@ -1,64 +1,31 @@
 'use client';
 
-import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from '@/components/ui/table';
 import { useEffect, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import { ArrowUpDown } from 'lucide-react';
-import {
-  Select,
-  SelectTrigger,
-  SelectValue,
-  SelectContent,
-  SelectItem,
-} from '@/components/ui/select';
-
-type Location = {
-  id: string;
-  city: string;
-  country: string;
-  street: {
-    name: string;
-    number: number;
-  };
-  postcode: string;
-};
-
-type LocationFlat = Omit<Location, 'street'> & { street: string };
-
-type Header = {
-  id: string;
-  name: string;
-};
+import LocationTable from '@/components/Tables/LocationTable';
+import PageSizeSelect from '@/components/Selects/PageSizeSelect';
+import TablePagination from '@/components/Paginations/TablePagination';
 
 const fetchData = async () => {
   const res = await fetch('https://randomuser.me/api/?results=50')
     .then(res => res.json())
     .catch(err => console.log(err));
-
   return res;
 };
 
 export default function Page() {
-  const [tableHeaders, setTableHeaders] = useState<Header[]>([]);
+  const [tableHeaders, setTableHeaders] = useState<THeader[]>([]);
   const [tableData, setTableData] = useState<LocationFlat[]>([]);
   const [filteredData, setFilteredData] = useState<any>([]);
-  const [currentlySortedBy, setCurrentlySortedBy] = useState<string>('');
-  const [sortOrder, setSortOrder] = useState('asc');
+  
+ 
   const [filter, setFilter] = useState('');
   const [loading, setLoading] = useState<boolean>(true);
   const [page, setPage] = useState<number>(1);
   const [totalPages, setTotalPages] = useState<number>(1);
   const [perPage, setPerPage] = useState<string>('10');
-  const [visibleData, setVisibleData] = useState<Location[]>([]);
+  const [visibleData, setVisibleData] = useState<TLocation[]>([]);
 
   useEffect(() => {
     setLoading(true);
@@ -108,21 +75,7 @@ export default function Page() {
     setTotalPages(totalPages);
   }, [filteredData, parseInt(perPage)]);
 
-  const sortBy = (value: string) => {
-    const sortedData = [...tableData];
-    sortedData.sort((a: any, b: any) => {
-      if (a[value] < b[value]) {
-        return sortOrder === 'asc' ? -1 : 1;
-      }
-      if (a[value] > b[value]) {
-        return sortOrder === 'asc' ? 1 : -1;
-      }
-      return 0;
-    });
-    setFilteredData(sortedData);
-    setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
-  };
-
+  
   const handleFilterData = (value: string) => {
     setFilter(value);
     const filteredData = [...tableData];
@@ -152,114 +105,28 @@ export default function Page() {
                 />
               </div>
               <div className="rounded-sm border border-gray-300 ">
-                <Table className="table-fixed">
-                  <TableHeader>
-                    <TableRow className="border-gray-300 bg-gray-900 hover:bg-gray-900">
-                      {tableHeaders?.map((header: Header) => {
-                        return (
-                          <TableHead key={header.name}>
-                            <Button
-                              variant={'ghost'}
-                              size="sm"
-                              className={`text-left bg-gray-900 hover:bg-gray-800 hover:text-gray-300 ${
-                                currentlySortedBy === header.name &&
-                                'text-gray-300'
-                              }`}
-                              onClick={() => {
-                                sortBy(header.name);
-                                setCurrentlySortedBy(header.name);
-                              }}
-                            >
-                              {header.name}
-                              <ArrowUpDown className="ml-2 h-4 w-4" />
-                            </Button>
-                          </TableHead>
-                        );
-                      })}
-                    </TableRow>
-                  </TableHeader>
-                  <TableBody>
-                    {visibleData?.length ? (
-                      visibleData?.map((row: Location) => (
-                        <TableRow
-                          key={row.id}
-                          className="border-gray-300 bg-gray-100"
-                        >
-                          {Object.keys(row)
-                            .filter(key => key !== 'id')
-                            .map((key: string) => {
-                              return (
-                                <TableCell key={key} className="break-words">
-                                  {(row as any)[key]}
-                                </TableCell>
-                              );
-                            })}
-                        </TableRow>
-                      ))
-                    ) : (
-                      <TableRow>
-                        <TableCell
-                          colSpan={tableHeaders.length}
-                          className="h-24 text-center"
-                        >
-                          {loading ? 'Loading...' : 'No results.'}
-                        </TableCell>
-                      </TableRow>
-                    )}
-                  </TableBody>
-                </Table>
+                <LocationTable
+                  tableHeaders={tableHeaders}
+                  tableData={tableData}
+                  visibleData={visibleData}
+                  loading={loading}
+                  setFilteredData={setFilteredData}
+                />
               </div>
               <div className="flex items-center justify-end space-x-2 py-4">
-                <Select
-                  onValueChange={(value: string) => {
-                    setPerPage(value);
-                    setPage(1);
-                  }}
-                  defaultValue={perPage}
-                >
-                  <SelectTrigger className="w-[80px]">
-                    <SelectValue placeholder="10" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value={'10'}>10</SelectItem>
-                    <SelectItem value={'20'}>20</SelectItem>
-                    <SelectItem value={'50'}>50</SelectItem>
-                    <SelectItem value={'100'}>100</SelectItem>
-                  </SelectContent>
-                </Select>
+                <PageSizeSelect
+                  perPage={perPage}
+                  setPerPage={setPerPage}
+                  setPage={setPage}
+                />
               </div>
               <div className="flex items-center justify-center space-x-2 py-4">
-                <div className="space-x-2">
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={() => setPage(page - 1)}
-                    disabled={page === 1 || visibleData.length === 0}
-                  >
-                    Previous
-                  </Button>
-                  {Array.from(Array(totalPages).keys()).map((item, index) => {
-                    return (
-                      <Button
-                        key={index}
-                        variant="outline"
-                        size="sm"
-                        onClick={() => setPage(index + 1)}
-                        disabled={page === index + 1}
-                      >
-                        {index + 1}
-                      </Button>
-                    );
-                  })}
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={() => setPage(page + 1)}
-                    disabled={page === totalPages || visibleData.length === 0}
-                  >
-                    Next
-                  </Button>
-                </div>
+                <TablePagination
+                  visibleData={visibleData}
+                  totalPages={totalPages}
+                  page={page}
+                  setPage={setPage}
+                />
               </div>
             </div>
           </div>

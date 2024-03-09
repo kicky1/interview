@@ -1,11 +1,3 @@
-export type Task = {
-  id: number;
-  title: string;
-  link: string;
-  badge: string;
-  description: string;
-};
-
 export const tasksData: Task[] = [
   {
     id: 1,
