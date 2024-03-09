@@ -1,54 +1,19 @@
 'use client';
 
+import { createFreshCards } from '@/app/hooks/useCreateCards';
+import { useShuffleCards } from '@/app/hooks/useShuffleCards';
+import MemoCard from '@/components/Cards/MemoCard';
 import { Button } from '@/components/ui/button';
 import { toast } from '@/components/ui/use-toast';
-import { cn } from '@/lib/utils';
-import { SpadeIcon } from 'lucide-react';
 import { useState, useEffect, useRef } from 'react';
 
-type Card = {
-  value: string;
-  visible: boolean;
-};
-
-type Cards = Card[];
-
-const createFreshCards = (): Cards => [
-  { value: '1', visible: false },
-  { value: '1', visible: false },
-  { value: '2', visible: false },
-  { value: '2', visible: false },
-  { value: '3', visible: false },
-  { value: '3', visible: false },
-  { value: '4', visible: false },
-  { value: '4', visible: false },
-  { value: '5', visible: false },
-  { value: '5', visible: false },
-  { value: '6', visible: false },
-  { value: '6', visible: false },
-];
-
-const shuffleCards = (cards: Card[]) => {
-  for (let i = cards.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    const temp = cards[i];
-    cards[i] = cards[j];
-    cards[j] = temp;
-  }
-  return cards;
-};
-
 export default function Page() {
-  const [cards, setCards] = useState<Cards>(shuffleCards(createFreshCards()));
-  const [pickedFirstCard, setPickedFirstCard] = useState<Card | undefined>(
-    undefined,
-  );
-  const [pickedSecondCard, setPickedSecondCard] = useState<Card | undefined>(
-    undefined,
-  );
-  const [started, setStarted] = useState(false);
   const isAnimation = useRef(false);
-
+  const [cards, setCards] = useState<Cards>(useShuffleCards(createFreshCards()));
+  const [pickedFirstCard, setPickedFirstCard] = useState<Card | undefined>(undefined);
+  const [pickedSecondCard, setPickedSecondCard] = useState<Card | undefined>(undefined);
+  const [started, setStarted] = useState(false);
+  
   const handleCardClick = (index: number) => {
     if (isAnimation.current) {
       return;
@@ -63,7 +28,7 @@ export default function Page() {
   };
 
   const handleStart = () => {
-    setCards(shuffleCards(createFreshCards()));
+    setCards(useShuffleCards(createFreshCards()));
     setStarted(true);
   };
 
@@ -115,28 +80,12 @@ export default function Page() {
         <div className="h-fit w-fit p-4 mt-8 border-2 border-slate-200 bg-slate-50 rounded">
           <div className="grid grid-cols-3 gap-4 sm:grid-cols-4">
             {cards.map((card, index) => (
-              <div
-                key={index}
-                className={cn(card.visible && 'flipped', 'flip-card')}
-              >
-                <Button
-                  key={index}
-                  className={`w-24 h-24`}
-                  onClick={() => handleCardClick(index)}
-                  disabled={card.visible || !started}
-                >
-                  {card.visible ? (
-                    <span
-                      style={{ transform: 'scaleX(-1)' }}
-                      className={'text-lg'}
-                    >
-                      {card.value}
-                    </span>
-                  ) : (
-                    <SpadeIcon />
-                  )}
-                </Button>
-              </div>
+              <MemoCard
+                card={card}
+                index={index}
+                started={started}
+                handleCardClick={handleCardClick}
+              />
             ))}
           </div>
         </div>
