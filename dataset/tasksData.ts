@@ -47,4 +47,12 @@ export const tasksData: Task[] = [
     description:
       'Create an application that allows users to play a whac-a-snowflake game. The game should involve a grid of cards, and the objective is to force randomly emerging snowflakes dissapear by hitting them with a mallet.',
   },
+  {
+    id: 6,
+    title: 'T.7',
+    link: 'codingchallanges',
+    badge: 'medium',
+    description:
+      ' Coding challenges containing varying levels, from very easy to difficult. They consist of transformations of objects, arrays or strings, in such a way as to obtain the expected solution.',
+  },
 ];
