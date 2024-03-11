@@ -18,7 +18,7 @@ export default function ChallengeCard({title, description, children, clear} : Pr
             <CardContent>
                 {children}
             </CardContent>
-            <CardFooter className="float-right">
+            <CardFooter className="flex justify-end">
                 <Button variant="outline" onClick={clear}>Clear</Button>
             </CardFooter>
         </Card>
