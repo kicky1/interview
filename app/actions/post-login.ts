@@ -1,4 +1,6 @@
-export const useLogin = async ({ username, password }: LoginInput) => {
+import { LoginInput } from "../types/login.type";
+
+export const loginUser = async ({ username, password }: LoginInput) => {
     return await new Promise((resolve, reject) => {
       setTimeout(() => {
         fetch('https://dummyjson.com/auth/login', {

@@ -1,4 +1,4 @@
-type TLocation = {
+export type TLocation = {
     id: string;
     city: string;
     country: string;
@@ -9,4 +9,4 @@ type TLocation = {
     postcode: string;
   };
   
-type LocationFlat = Omit<TLocation, 'street'> & { street: string };
+export type LocationFlat = Omit<TLocation, 'street'> & { street: string };

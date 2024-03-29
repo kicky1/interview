@@ -1,6 +1,6 @@
-type Variant = 'default' | 'destructive' | null | undefined;
+export type Variant = 'default' | 'destructive' | null | undefined;
 
-type TAlert = {
+export type TAlert = {
   title: string;
   message: string;
   showAlert: boolean;

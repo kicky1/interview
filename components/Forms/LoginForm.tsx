@@ -1,10 +1,12 @@
+'use client'
 import { Label } from "@radix-ui/react-label";
 import { RotateCw } from "lucide-react";
 import { Button } from "../ui/button";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "../ui/card";
 import { Input } from "../ui/input";
-import { useLogin } from "@/app/hooks/useLogin";
 import { Dispatch, MouseEventHandler, SetStateAction, useState } from "react";
+import { loginUser } from "@/app/actions/post-login";
+import { Variant } from "@/app/types/alert.type";
 
 
 type Props = {
@@ -29,7 +31,7 @@ export default function LoginForm ({setShowAlert, setVariant, setTitle, setMessa
           return;
         }
         setLoading(true);
-        await useLogin({ username, password })
+        await loginUser({ username, password })
           .then(() => {
             setTitle('Login Success');
             setMessage('The user has been correctly logged in.');

@@ -1,5 +1,8 @@
 import Challenge1 from "@/components/Challenges/Challenge1";
 import Challenge2 from "@/components/Challenges/Challenge2";
+import Challenge3 from "@/components/Challenges/Challenge3";
+import Challenge4 from "@/components/Challenges/Challenge4";
+import Challenge5 from "@/components/Challenges/Challenge5";
 import {
   Accordion,
   AccordionContent,
@@ -20,6 +23,12 @@ export default function Page() {
               <AccordionTrigger>Arrays</AccordionTrigger>
               <AccordionContent>
                 <Challenge1/>
+                <div className="mt-3"/>
+                <Challenge3/>
+                <div className="mt-3"/>
+                <Challenge4/>
+                <div className="mt-3"/>
+                <Challenge5/>
               </AccordionContent>
             </AccordionItem>
             <AccordionItem value="item-2">

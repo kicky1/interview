@@ -1,4 +1,4 @@
-type TTree = {
+export type TTree = {
     id: string;
     name: string;
     depth: number;

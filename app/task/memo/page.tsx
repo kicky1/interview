@@ -2,6 +2,7 @@
 
 import { createFreshCards } from '@/app/hooks/useCreateCards';
 import { useShuffleCards } from '@/app/hooks/useShuffleCards';
+import { Card } from '@/app/types/card.type';
 import MemoCard from '@/components/Cards/MemoCard';
 import { Button } from '@/components/ui/button';
 import { toast } from '@/components/ui/use-toast';
@@ -9,10 +10,11 @@ import { useState, useEffect, useRef } from 'react';
 
 export default function Page() {
   const isAnimation = useRef(false);
-  const [cards, setCards] = useState<Cards>(useShuffleCards(createFreshCards()));
   const [pickedFirstCard, setPickedFirstCard] = useState<Card | undefined>(undefined);
   const [pickedSecondCard, setPickedSecondCard] = useState<Card | undefined>(undefined);
   const [started, setStarted] = useState(false);
+
+  const { cards, setCards, shuffleCards } = useShuffleCards(createFreshCards());
   
   const handleCardClick = (index: number) => {
     if (isAnimation.current) {
@@ -28,7 +30,7 @@ export default function Page() {
   };
 
   const handleStart = () => {
-    setCards(useShuffleCards(createFreshCards()));
+    shuffleCards();
     setStarted(true);
   };
 
@@ -81,6 +83,7 @@ export default function Page() {
           <div className="grid grid-cols-3 gap-4 sm:grid-cols-4">
             {cards.map((card, index) => (
               <MemoCard
+                key={index}
                 card={card}
                 index={index}
                 started={started}

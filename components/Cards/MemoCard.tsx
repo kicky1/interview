@@ -1,5 +1,5 @@
-'use client';
-
+'use client'
+import { Card } from '@/app/types/card.type';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { SpadeIcon } from 'lucide-react';

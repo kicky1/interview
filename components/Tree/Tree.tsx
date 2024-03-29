@@ -6,6 +6,7 @@ import { useState } from "react";
 import { Button } from "../ui/button";
 import { Card, CardDescription } from "../ui/card";
 import { Input } from "../ui/input";
+import { TTree } from "@/app/types/tree.type";
 
 type Props = {
     treeObject: TTree[];
