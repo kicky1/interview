@@ -2,7 +2,7 @@
 import { Variant } from '@/app/types/alert.type';
 import AlertSnackbar from '@/components/Alerts/AlertSnackbar';
 import LoginForm from '@/components/Forms/LoginForm';
-import { useState} from 'react';
+import { useState } from 'react';
 
 // ================ LOGIN FORM ====================
 // Tasks:
@@ -17,7 +17,7 @@ export default function Page() {
   const [variant, setVariant] = useState<Variant>('default');
   const [title, setTitle] = useState('');
   const [message, setMessage] = useState('');
- 
+
   return (
     <>
       <div className="my-8 text-center">
