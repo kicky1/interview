@@ -1,7 +1,7 @@
 'use client';
 
 import { Input } from '@/components/ui/input';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import LocationTable from '@/components/Tables/LocationTable';
 import PageSizeSelect from '@/components/Selects/PageSizeSelect';
 import TablePagination from '@/components/Paginations/TablePagination';
@@ -9,14 +9,12 @@ import { useFetchTableData } from '@/app/hooks/table/useFetchTableData';
 import { usePrepareTableData } from '@/app/hooks/table/usePrepareTableData';
 import { useSetVisibleData } from '@/app/hooks/table/useSetVisibleData';
 import { useSetTotalPages } from '@/app/hooks/table/useSetTotalPages';
-import { Switch } from "@/components/ui/switch"
+import { Switch } from '@/components/ui/switch';
 import { THeader } from '@/app/types/table.type';
-import { LocationFlat, TLocation } from '@/app/types/location.type';
-
+import { TLocation } from '@/app/types/location.type';
 
 export default function Page() {
   const [tableHeaders, setTableHeaders] = useState<THeader[]>([]);
-  const [tableData, setTableData] = useState<LocationFlat[]>([]);
   const [filteredData, setFilteredData] = useState<any>([]);
   const [filter, setFilter] = useState('');
   const [loading, setLoading] = useState<boolean>(true);
@@ -26,10 +24,22 @@ export default function Page() {
   const [visibleData, setVisibleData] = useState<TLocation[]>([]);
   const [checked, setChecked] = useState<boolean>(false);
 
-  useFetchTableData({setTableData, setLoading});
-  usePrepareTableData({tableData, perPage, setTableHeaders, setFilteredData, setTotalPages});
-  useSetVisibleData({perPage, page, filteredData, setVisibleData});
-  useSetTotalPages({filteredData, perPage, setTotalPages});
+  const { tableData } = useFetchTableData({ setLoading });
+
+  useEffect(() => {
+    usePrepareTableData({
+      tableData,
+      perPage,
+      setTableHeaders,
+      setFilteredData,
+      setTotalPages,
+    });
+  }, [tableData]);
+
+  useEffect(() => {
+    useSetVisibleData({ perPage, page, filteredData, setVisibleData });
+    useSetTotalPages({ filteredData, perPage, setTotalPages });
+  }, [page, perPage, filteredData]);
 
   const handleFilterData = (value: string) => {
     setFilter(value);
@@ -44,14 +54,6 @@ export default function Page() {
 
   const handleSwitchChange = (checked: boolean) => {
     setChecked(checked);
-    if (checked) {
-      const sortedData = [...filteredData].sort((a: any, b: any) => {
-        return a.city.localeCompare(b.city);
-      });
-      setFilteredData(sortedData);
-    } else {
-      setFilteredData(tableData);
-    }
   };
 
   return (
@@ -71,19 +73,20 @@ export default function Page() {
                   className="max-w-sm mr-4"
                 />
                 <Switch
-                    checked={checked}
-                    onCheckedChange={handleSwitchChange}
-                  />
-              </div>
-              <div className="rounded-sm border border-gray-300 ">
-                <LocationTable
-                  tableHeaders={tableHeaders}
-                  tableData={tableData}
-                  visibleData={visibleData}
-                  loading={loading}
-                  setFilteredData={setFilteredData}
+                  checked={checked}
+                  onCheckedChange={handleSwitchChange}
                 />
               </div>
+              
+                    <LocationTable
+                    tableHeaders={tableHeaders}
+                    tableData={tableData}
+                    visibleData={visibleData}
+                    loading={loading}
+                    checked={checked}
+                    setFilteredData={setFilteredData}
+                  />
+          
               <div className="flex items-center justify-end space-x-2 py-4">
                 <PageSizeSelect
                   perPage={perPage}

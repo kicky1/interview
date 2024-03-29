@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Card } from "../types/card.type";
+import { useState } from 'react';
+import { Card } from '../types/card.type';
 
 export const useShuffleCards = (initialCards: Card[]) => {
   const [cards, setCards] = useState<Card[]>(initialCards);
@@ -12,6 +12,6 @@ export const useShuffleCards = (initialCards: Card[]) => {
       initialCards[j] = temp;
     }
     setCards(initialCards);
-  }
-    return {cards, setCards, shuffleCards};
   };
+  return { cards, setCards, shuffleCards };
+};
