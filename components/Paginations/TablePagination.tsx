@@ -1,3 +1,5 @@
+'use client'
+import { TLocation } from "@/app/types/location.type";
 import { Button } from "../ui/button";
 import { SetStateAction } from "react";
 

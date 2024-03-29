@@ -1,3 +1,5 @@
+import { Cards } from "../types/card.type";
+
 export const createFreshCards = (): Cards => [
     { value: '1', visible: false },
     { value: '1', visible: false },

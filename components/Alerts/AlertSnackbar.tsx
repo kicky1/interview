@@ -1,6 +1,8 @@
+'use client'
 import { ThumbsUp, XCircle } from "lucide-react";
 import { useEffect } from "react";
 import { Alert, AlertTitle, AlertDescription } from "../ui/alert";
+import { TAlert } from "@/app/types/alert.type";
 
 export default function AlertSnackbar({
     title,

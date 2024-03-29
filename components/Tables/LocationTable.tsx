@@ -1,7 +1,10 @@
+'use client'
 import { ArrowUpDown } from "lucide-react";
 import { Button } from "../ui/button";
 import { TableHeader, TableRow, TableHead, TableBody, TableCell, Table } from "../ui/table";
 import { Dispatch, useState } from "react";
+import { LocationFlat, TLocation } from "@/app/types/location.type";
+import { THeader } from "@/app/types/table.type";
 
 type Props = {
     tableHeaders: THeader[];

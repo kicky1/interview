@@ -1,4 +1,5 @@
 'use client';
+import { Variant } from '@/app/types/alert.type';
 import AlertSnackbar from '@/components/Alerts/AlertSnackbar';
 import LoginForm from '@/components/Forms/LoginForm';
 import { useState} from 'react';

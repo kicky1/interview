@@ -1,81 +1,36 @@
 'use client';
 
 import { Input } from '@/components/ui/input';
-import { useEffect, useState } from 'react';
-import { v4 as uuidv4 } from 'uuid';
+import { useState } from 'react';
 import LocationTable from '@/components/Tables/LocationTable';
 import PageSizeSelect from '@/components/Selects/PageSizeSelect';
 import TablePagination from '@/components/Paginations/TablePagination';
+import { useFetchTableData } from '@/app/hooks/table/useFetchTableData';
+import { usePrepareTableData } from '@/app/hooks/table/usePrepareTableData';
+import { useSetVisibleData } from '@/app/hooks/table/useSetVisibleData';
+import { useSetTotalPages } from '@/app/hooks/table/useSetTotalPages';
+import { Switch } from "@/components/ui/switch"
+import { THeader } from '@/app/types/table.type';
+import { LocationFlat, TLocation } from '@/app/types/location.type';
 
-const fetchData = async () => {
-  const res = await fetch('https://randomuser.me/api/?results=50')
-    .then(res => res.json())
-    .catch(err => console.log(err));
-  return res;
-};
 
 export default function Page() {
   const [tableHeaders, setTableHeaders] = useState<THeader[]>([]);
   const [tableData, setTableData] = useState<LocationFlat[]>([]);
   const [filteredData, setFilteredData] = useState<any>([]);
-  
- 
   const [filter, setFilter] = useState('');
   const [loading, setLoading] = useState<boolean>(true);
   const [page, setPage] = useState<number>(1);
   const [totalPages, setTotalPages] = useState<number>(1);
   const [perPage, setPerPage] = useState<string>('10');
   const [visibleData, setVisibleData] = useState<TLocation[]>([]);
+  const [checked, setChecked] = useState<boolean>(false);
 
-  useEffect(() => {
-    setLoading(true);
-    fetchData().then(res => {
-      setTableData(
-        res.results.map((item: any) => {
-          return {
-            id: uuidv4(),
-            city: item.location.city,
-            country: item.location.country,
-            street:
-              item.location.street.name + ' ' + item.location.street.number,
-            postcode: item.location.postcode,
-          };
-        }),
-      );
-      setLoading(false);
-    });
-  }, []);
+  useFetchTableData({setTableData, setLoading});
+  usePrepareTableData({tableData, perPage, setTableHeaders, setFilteredData, setTotalPages});
+  useSetVisibleData({perPage, page, filteredData, setVisibleData});
+  useSetTotalPages({filteredData, perPage, setTotalPages});
 
-  useEffect(() => {
-    if (tableData?.length) {
-      const header = Object.keys(tableData[0])
-        .filter(key => key !== 'id')
-        .map((key: any) => {
-          return {
-            name: key,
-            id: uuidv4(),
-          };
-        });
-      setTableHeaders(header);
-      setFilteredData(tableData);
-
-      const totalPages = Math.ceil(tableData.length / parseInt(perPage));
-      setTotalPages(totalPages);
-    }
-  }, [tableData]);
-
-  useEffect(() => {
-    const startIdx = (page - 1) * parseInt(perPage);
-    const endIdx = startIdx + parseInt(perPage);
-    setVisibleData(filteredData.slice(startIdx, endIdx));
-  }, [page, parseInt(perPage), filteredData]);
-
-  useEffect(() => {
-    const totalPages = Math.ceil(filteredData.length / parseInt(perPage));
-    setTotalPages(totalPages);
-  }, [filteredData, parseInt(perPage)]);
-
-  
   const handleFilterData = (value: string) => {
     setFilter(value);
     const filteredData = [...tableData];
@@ -85,6 +40,18 @@ export default function Page() {
       });
     });
     setFilteredData(filtered);
+  };
+
+  const handleSwitchChange = (checked: boolean) => {
+    setChecked(checked);
+    if (checked) {
+      const sortedData = [...filteredData].sort((a: any, b: any) => {
+        return a.city.localeCompare(b.city);
+      });
+      setFilteredData(sortedData);
+    } else {
+      setFilteredData(tableData);
+    }
   };
 
   return (
@@ -101,8 +68,12 @@ export default function Page() {
                   placeholder="Filter data..."
                   value={filter}
                   onChange={event => handleFilterData(event.target.value)}
-                  className="max-w-sm"
+                  className="max-w-sm mr-4"
                 />
+                <Switch
+                    checked={checked}
+                    onCheckedChange={handleSwitchChange}
+                  />
               </div>
               <div className="rounded-sm border border-gray-300 ">
                 <LocationTable

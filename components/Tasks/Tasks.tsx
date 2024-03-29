@@ -2,6 +2,7 @@ import { tasksData } from '@/dataset/tasksData';
 import TaskCard from './TaskCard';
 
 import { v4 as uuidv4 } from 'uuid';
+import { Badge } from '@/app/types/task.type';
 
 export default function Tasks() {
   // const sortedTasks = [...tasksData].sort(customSort);

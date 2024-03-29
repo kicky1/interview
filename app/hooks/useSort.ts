@@ -1,3 +1,5 @@
+import { Badge, Task } from "../types/task.type";
+
 export const customSort = (a: Task, b: Task) => {
   const difficultyOrder = { easy: 1, medium: 2, hard: 3 };
 

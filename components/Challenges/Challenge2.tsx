@@ -1,5 +1,4 @@
 'use client'
-
 import React, { useState } from "react";
 import ChallengeCard from "../Cards/ChallangeCard";
 import { Input } from "../ui/input";
@@ -32,7 +31,7 @@ export default function Challenge2() {
     return (
         <>
             <ChallengeCard
-                title='#2'
+                title='#1'
                 description='Write the JS function that takes given string and reverse the order of the words in the given string.'
                 clear={clear}
             >

@@ -1,7 +1,7 @@
-type Card = {
+export type Card = {
     value: string | number;
     visible: boolean;
   };
   
-type Cards = Card[];
-type Cards2D = Card[][];
+export type Cards = Card[];
+export type Cards2D = Card[][];

@@ -1,5 +1,5 @@
-type Badge = 'easy' | 'medium' | 'hard';
-type Task = {
+export type Badge = 'easy' | 'medium' | 'hard';
+export type Task = {
     id: number;
     title: string;
     link: string;
