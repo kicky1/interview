@@ -19,20 +19,20 @@ export const usePrepareTableData = ({
   setTotalPages,
 }: Props) => {
   useEffect(() => {
-  if (tableData?.length) {
-    const header = Object.keys(tableData[0])
-      .filter(key => key !== 'id')
-      .map((key: any) => {
-        return {
-          name: key,
-          id: uuidv4(),
-        };
-      });
-    setTableHeaders(header);
-    setFilteredData(tableData);
+    if (tableData?.length) {
+      const header = Object.keys(tableData[0])
+        .filter(key => key !== 'id')
+        .map((key: any) => {
+          return {
+            name: key,
+            id: uuidv4(),
+          };
+        });
+      setTableHeaders(header);
+      setFilteredData(tableData);
 
-    const totalPages = Math.ceil(tableData.length / parseInt(perPage));
-    setTotalPages(totalPages);
-  }
-}, [tableData, perPage]);
-}
+      const totalPages = Math.ceil(tableData.length / parseInt(perPage));
+      setTotalPages(totalPages);
+    }
+  }, [tableData, perPage]);
+};

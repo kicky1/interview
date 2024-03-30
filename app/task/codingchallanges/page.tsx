@@ -11,17 +11,15 @@ import {
 } from '@/components/ui/accordion';
 import { v4 as uuidv4 } from 'uuid';
 
-
 export default function Page() {
-
   const arrayChallengesArray = [
-    <Challenge1 key={uuidv4()}/>,
-    <Challenge3 key={uuidv4()}/>,
-    <Challenge4 key={uuidv4()}/>,
-    <Challenge5 key={uuidv4()}/>,
+    <Challenge1 key={uuidv4()} />,
+    <Challenge3 key={uuidv4()} />,
+    <Challenge4 key={uuidv4()} />,
+    <Challenge5 key={uuidv4()} />,
   ];
 
-  const stringChallengesArray = [<Challenge2  key={uuidv4()}/>];
+  const stringChallengesArray = [<Challenge2 key={uuidv4()} />];
 
   return (
     <>
@@ -36,7 +34,7 @@ export default function Page() {
               <AccordionTrigger>Arrays</AccordionTrigger>
               <AccordionContent>
                 <div className="w-full">
-                  {arrayChallengesArray.map((challenge) => (
+                  {arrayChallengesArray.map(challenge => (
                     <div key={uuidv4()}>
                       {challenge}
                       <div className="mt-3" />
@@ -49,7 +47,7 @@ export default function Page() {
               <AccordionTrigger>Strings</AccordionTrigger>
               <AccordionContent>
                 <div className="w-full">
-                  {stringChallengesArray.map((challenge) => (
+                  {stringChallengesArray.map(challenge => (
                     <div key={uuidv4()}>
                       {challenge}
                       <div className="mt-3" />

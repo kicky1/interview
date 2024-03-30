@@ -12,6 +12,7 @@ export const useSetTotalPages = ({
   setTotalPages,
 }: Props) => {
   useEffect(() => {
-  const totalPages = Math.ceil(filteredData.length / parseInt(perPage));
-  setTotalPages(totalPages)});
+    const totalPages = Math.ceil(filteredData.length / parseInt(perPage));
+    setTotalPages(totalPages);
+  });
 };

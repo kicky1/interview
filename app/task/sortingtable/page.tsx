@@ -13,6 +13,8 @@ import { Switch } from '@/components/ui/switch';
 import { THeader } from '@/app/types/table.type';
 import { TLocation } from '@/app/types/location.type';
 
+
+
 export default function Page() {
   const [tableHeaders, setTableHeaders] = useState<THeader[]>([]);
   const [filteredData, setFilteredData] = useState<any>([]);
@@ -26,20 +28,16 @@ export default function Page() {
 
   const { tableData } = useFetchTableData({ setLoading });
 
- 
-    usePrepareTableData({
-      tableData,
-      perPage,
-      setTableHeaders,
-      setFilteredData,
-      setTotalPages,
-    });
- 
+  usePrepareTableData({
+    tableData,
+    perPage,
+    setTableHeaders,
+    setFilteredData,
+    setTotalPages,
+  });
 
- 
-    useSetVisibleData({ perPage, page, filteredData, setVisibleData });
-    useSetTotalPages({ filteredData, perPage, setTotalPages });
-
+  useSetVisibleData({ perPage, page, filteredData, setVisibleData });
+  useSetTotalPages({ filteredData, perPage, setTotalPages });
 
   const handleFilterData = (value: string) => {
     setFilter(value);
@@ -65,36 +63,36 @@ export default function Page() {
         <div className="flex flex-col items-center justify-center mt-16">
           <div className="w-full">
             <div className="container mx-auto px-4 sm:px-8">
-              <div className="flex items-center py-4">
-                <Input
-                  placeholder="Filter data..."
-                  value={filter}
-                  onChange={event => handleFilterData(event.target.value)}
-                  className="max-w-sm mr-4"
-                />
-                <Switch
-                  checked={checked}
-                  onCheckedChange={handleSwitchChange}
-                />
-              </div>
-              
-                    <LocationTable
-                    tableHeaders={tableHeaders}
-                    tableData={tableData}
-                    visibleData={visibleData}
-                    loading={loading}
-                    checked={checked}
-                    setFilteredData={setFilteredData}
+              <div className="flex items-center justify-between py-4">
+                <div className="flex items-center">
+                  <Input
+                    placeholder="Filter data..."
+                    value={filter}
+                    onChange={event => handleFilterData(event.target.value)}
+                    className="max-w-sm mr-4"
                   />
-          
-              <div className="flex items-center justify-end space-x-2 py-4">
-                <PageSizeSelect
-                  perPage={perPage}
-                  setPerPage={setPerPage}
-                  setPage={setPage}
-                />
+                  <Switch
+                    checked={checked}
+                    onCheckedChange={handleSwitchChange}
+                  />
+                </div>
+                <div>
+                  <PageSizeSelect
+                    perPage={perPage}
+                    setPerPage={setPerPage}
+                    setPage={setPage}
+                  />
+                </div>
               </div>
-              <div className="flex items-center justify-center space-x-2 py-4">
+              <LocationTable
+                tableHeaders={tableHeaders}
+                tableData={tableData}
+                visibleData={visibleData}
+                loading={loading}
+                checked={checked}
+                setFilteredData={setFilteredData}
+              />
+              <div className="flex items-center justify-center space-x-2 py-4 mt-4">
                 <TablePagination
                   visibleData={visibleData}
                   totalPages={totalPages}
