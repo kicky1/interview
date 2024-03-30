@@ -7,8 +7,6 @@ type Props = {
   setLoading: Dispatch<SetStateAction<boolean>>;
 };
 
-
-
 export const useFetchTableData = ({ setLoading }: Props) => {
   const tableData = useRef<LocationFlat[]>([]);
 
