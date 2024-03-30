@@ -21,7 +21,7 @@ export default function Page() {
     <Challenge5 key={uuidv4()}/>,
   ];
 
-  const stringChallengesArray = [<Challenge2 />];
+  const stringChallengesArray = [<Challenge2  key={uuidv4()}/>];
 
   return (
     <>
