@@ -1,5 +1,5 @@
 'use client';
-import { ArrowDown, ArrowUp, ArrowUpDown } from 'lucide-react';
+import { ArrowDown, ArrowUp } from 'lucide-react';
 import { Button } from '../ui/button';
 import {
   TableHeader,
