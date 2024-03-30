@@ -1,4 +1,4 @@
-import { SetStateAction, use, useEffect } from 'react';
+import { SetStateAction, useEffect } from 'react';
 
 type Props = {
   filteredData: string;

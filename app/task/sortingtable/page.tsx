@@ -1,7 +1,7 @@
 'use client';
 
 import { Input } from '@/components/ui/input';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import LocationTable from '@/components/Tables/LocationTable';
 import PageSizeSelect from '@/components/Selects/PageSizeSelect';
 import TablePagination from '@/components/Paginations/TablePagination';
