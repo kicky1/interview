@@ -1,4 +1,4 @@
-import { SetStateAction, useEffect } from 'react';
+import { SetStateAction, use, useEffect } from 'react';
 
 type Props = {
   filteredData: string;
@@ -11,6 +11,7 @@ export const useSetTotalPages = ({
   perPage,
   setTotalPages,
 }: Props) => {
+  useEffect(() => {
   const totalPages = Math.ceil(filteredData.length / parseInt(perPage));
-  setTotalPages(totalPages);
+  setTotalPages(totalPages)});
 };

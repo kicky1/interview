@@ -26,7 +26,7 @@ export default function Page() {
 
   const { tableData } = useFetchTableData({ setLoading });
 
-  useEffect(() => {
+ 
     usePrepareTableData({
       tableData,
       perPage,
@@ -34,12 +34,12 @@ export default function Page() {
       setFilteredData,
       setTotalPages,
     });
-  }, [tableData]);
+ 
 
-  useEffect(() => {
+ 
     useSetVisibleData({ perPage, page, filteredData, setVisibleData });
     useSetTotalPages({ filteredData, perPage, setTotalPages });
-  }, [page, perPage, filteredData]);
+
 
   const handleFilterData = (value: string) => {
     setFilter(value);

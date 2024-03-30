@@ -14,7 +14,8 @@ export const useSetVisibleData = ({
   filteredData,
   setVisibleData,
 }: Props) => {
+  useEffect(() => {
   const startIdx = (page - 1) * parseInt(perPage);
   const endIdx = startIdx + parseInt(perPage);
   setVisibleData(filteredData.slice(startIdx, endIdx));
-};
+}, [page, perPage, filteredData])};
