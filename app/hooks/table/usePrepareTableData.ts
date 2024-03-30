@@ -18,6 +18,7 @@ export const usePrepareTableData = ({
   setFilteredData,
   setTotalPages,
 }: Props) => {
+  useEffect(() => {
   if (tableData?.length) {
     const header = Object.keys(tableData[0])
       .filter(key => key !== 'id')
@@ -33,4 +34,5 @@ export const usePrepareTableData = ({
     const totalPages = Math.ceil(tableData.length / parseInt(perPage));
     setTotalPages(totalPages);
   }
-};
+}, [tableData, perPage]);
+}

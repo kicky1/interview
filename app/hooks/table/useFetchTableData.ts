@@ -1,6 +1,6 @@
 import { getLocationData } from '@/app/actions/get-location';
 import { LocationFlat } from '@/app/types/location.type';
-import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react';
+import { Dispatch, SetStateAction, useEffect, useRef } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
 type Props = {

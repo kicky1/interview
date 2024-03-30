@@ -9,8 +9,11 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '@/components/ui/accordion';
+import { v4 as uuidv4 } from 'uuid';
+
 
 export default function Page() {
+
   const arrayChallengesArray = [
     <Challenge1 />,
     <Challenge3 />,
@@ -33,8 +36,8 @@ export default function Page() {
               <AccordionTrigger>Arrays</AccordionTrigger>
               <AccordionContent>
                 <div className="w-full">
-                  {arrayChallengesArray.map((challenge, index) => (
-                    <div key={index}>
+                  {arrayChallengesArray.map((challenge) => (
+                    <div key={uuidv4()}>
                       {challenge}
                       <div className="mt-3" />
                     </div>
@@ -46,8 +49,8 @@ export default function Page() {
               <AccordionTrigger>Strings</AccordionTrigger>
               <AccordionContent>
                 <div className="w-full">
-                  {stringChallengesArray.map((challenge, index) => (
-                    <div key={index}>
+                  {stringChallengesArray.map((challenge) => (
+                    <div key={uuidv4()}>
                       {challenge}
                       <div className="mt-3" />
                     </div>
