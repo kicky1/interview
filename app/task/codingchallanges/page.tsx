@@ -15,10 +15,10 @@ import { v4 as uuidv4 } from 'uuid';
 export default function Page() {
 
   const arrayChallengesArray = [
-    <Challenge1 />,
-    <Challenge3 />,
-    <Challenge4 />,
-    <Challenge5 />,
+    <Challenge1 key={uuidv4()}/>,
+    <Challenge3 key={uuidv4()}/>,
+    <Challenge4 key={uuidv4()}/>,
+    <Challenge5 key={uuidv4()}/>,
   ];
 
   const stringChallengesArray = [<Challenge2 />];
