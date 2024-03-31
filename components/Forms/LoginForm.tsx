@@ -14,6 +14,7 @@ import { Input } from '../ui/input';
 import { Dispatch, MouseEventHandler, SetStateAction, useState } from 'react';
 import { loginUser } from '@/app/actions/post-login';
 import { Variant } from '@/app/types/alert.type';
+import { Eye, EyeOff } from 'lucide-react';
 
 type Props = {
   setShowAlert: Dispatch<SetStateAction<boolean>>;
@@ -31,6 +32,7 @@ export default function LoginForm({
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const [showErrorMessage, setShowErrorMessage] = useState(false);
 
   const validate = username === '' || password.length < 6;
@@ -86,15 +88,26 @@ export default function LoginForm({
         </div>
         <div className="grid gap-2">
           <Label htmlFor="password">Password</Label>
-          <Input
-            id="password"
-            type="password"
-            value={password}
-            onChange={e => {
-              setPassword(e.target.value);
-              setShowErrorMessage(false);
-            }}
-          />
+          <div className="relative">
+            <Input
+              id="password"
+              type={showPassword ? 'text' : 'password'}
+              value={password}
+              onChange={e => {
+                setPassword(e.target.value);
+                setShowErrorMessage(false);
+              }}
+            />
+            <div className="absolute inset-y-0 right-2 flex items-center hover:cursor-pointer">
+              <span onClick={() => setShowPassword(!showPassword)}>
+                {!showPassword ? (
+                  <Eye className="h-5 w-5 text-gray-400" />
+                ) : (
+                  <EyeOff className="h-5 w-5 text-gray-400" />
+                )}
+              </span>
+            </div>
+          </div>
         </div>
 
         {showErrorMessage && (
