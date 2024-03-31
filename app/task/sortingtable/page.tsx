@@ -13,8 +13,6 @@ import { Switch } from '@/components/ui/switch';
 import { THeader } from '@/app/types/table.type';
 import { TLocation } from '@/app/types/location.type';
 
-
-
 export default function Page() {
   const [tableHeaders, setTableHeaders] = useState<THeader[]>([]);
   const [filteredData, setFilteredData] = useState<any>([]);

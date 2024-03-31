@@ -106,13 +106,12 @@ export default function LocationTable({
                         }}
                       >
                         {header.name}
-                        {
-                          currentlySortedBy === header.name && (
-                            sortOrder === 'asc' ? <ArrowUp className="ml-2 h-4 w-4" /> :
+                        {currentlySortedBy === header.name &&
+                          (sortOrder === 'asc' ? (
+                            <ArrowUp className="ml-2 h-4 w-4" />
+                          ) : (
                             <ArrowDown className="ml-2 h-4 w-4" />
-                          )
-                        }
-
+                          ))}
                       </Button>
                     </TableHead>
                   );
